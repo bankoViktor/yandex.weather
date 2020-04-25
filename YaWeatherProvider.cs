@@ -11,21 +11,20 @@ namespace Yandex.Weather
     /// </summary>
     public class YaWeatherProvider
     {
-        public string Endpoint;
-        public string Key;
+        public string Endpoint { get; set; }
+        public string Key { get; set; }
         private readonly HttpClient Http;
 
         /// <summary>
-        /// Создает экземпляр класса с помощью которого можно запросить погоду от сервера
+        /// Конструктор.
         /// </summary>
         /// <param name="endpoint">URL адрес конечной точки сервиса Яндекс.Погода.</param>
-        /// <param name="key">Ключ в виде строки, содержащей буквы и цифры, необходим для доступа к Яндекс API.</param>
+        /// <param name="key">Ключ, необходим для доступа к Яндекс API.</param>
         public YaWeatherProvider(string endpoint, string key)
         {
             Endpoint = endpoint;
             Key = key;
             Http = new HttpClient();
-            //Http.DefaultRequestHeaders.Add("X-Yandex-API-Key", Key);
         }
 
         /// <summary>
@@ -48,7 +47,7 @@ namespace Yandex.Weather
         /// <summary>
         /// Осуществляет запрос для одного населенного пункта по его идентификатору
         /// </summary>
-        /// <param name="geioid">Индивидуальный числовой код населенного пункта</param>
+        /// <param name="geioid">Идентификатор населенного населенного пункта</param>
         /// <param name="extra">Флаг влияющий на полноту запрашиваемых данных</param>
         /// <returns>Возвращает класс, содержащий данные о погоде</returns>
         public async Task<YaWeatherData> GetWeatherAsync(int geioid, bool extra = true)
@@ -57,8 +56,18 @@ namespace Yandex.Weather
             return await SendRequestAsync(uri);
         }
 
+        /// <summary>
+        /// Запрос.
+        /// </summary>
+        /// <param name="uri">GET-строка запроса</param>
+        /// <returns></returns>
         private async Task<YaWeatherData> SendRequestAsync(string uri)
         {
+            if (string.IsNullOrWhiteSpace(uri))
+            {
+                throw new ArgumentException("Не допустимое значение параметра", nameof(uri));
+            }
+
             Http.DefaultRequestHeaders.Clear();
             Http.DefaultRequestHeaders.Add("X-Yandex-API-Key", Key);
 
@@ -67,7 +76,9 @@ namespace Yandex.Weather
                 string response = await Http.GetStringAsync(uri);
 
                 if (string.IsNullOrWhiteSpace(response))
-                    throw new Exception();
+                {
+                    throw new Exception("Ответ от сервера пуст");
+                }
 
                 return JsonConvert.DeserializeObject<YaWeatherData>(response);
             }

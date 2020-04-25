@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Yandex.Weather
+namespace Yandex.Weather.Attributes
 {
     [AttributeUsage(AttributeTargets.All, Inherited = false, AllowMultiple = true)]
     public sealed class YaUnitsAttribute : Attribute
