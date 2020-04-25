@@ -1,0 +1,7 @@
+.vs/
+WeatherPlanner/bin/
+WeatherPlanner/obj/
+Yandex.Weather/bin/
+Yandex.Weather/obj/
+*.TMP
+*.tmp
