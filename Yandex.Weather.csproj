@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Yandex.Weather</RootNamespace>
     <AssemblyName>Yandex.Weather</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile />
@@ -57,12 +57,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\ShortPart.cs" />
+    <Compile Include="Data\GeoObjectItem.cs" />
+    <Compile Include="Data\GeoObject.cs" />
+    <Compile Include="Data\TZInfo.cs" />
+    <Compile Include="Data\Parts.cs" />
+    <Compile Include="Data\Fact.cs" />
+    <Compile Include="Data\Forecast.cs" />
+    <Compile Include="Data\HourItem.cs" />
+    <Compile Include="Data\Biomet.cs" />
+    <Compile Include="Data\Yesterday.cs" />
+    <Compile Include="YaWeatherData.cs" />
     <Compile Include="Converters\MoonCodeConverter.cs" />
     <Compile Include="Converters\SeasonConverter.cs" />
     <Compile Include="Converters\DayTimeConverter.cs" />
     <Compile Include="Converters\IconConverter.cs" />
     <Compile Include="Helper.cs" />
-    <Compile Include="Part.cs" />
+    <Compile Include="Data\Part.cs" />
     <Compile Include="Converters\ConditionConverter.cs" />
     <Compile Include="Converters\WindDirConverter.cs" />
     <Compile Include="Converters\PrecTypeConverter.cs" />
@@ -73,10 +84,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="YaUnitsAttribute.cs" />
+    <Compile Include="Attributes\YaUnitsAttribute.cs" />
     <Compile Include="YaWeatherProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="YaWeather.cs" />
+    <Compile Include="Data\Info.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\favicon.ico" />
